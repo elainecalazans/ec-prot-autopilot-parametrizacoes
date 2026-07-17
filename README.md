@@ -1,16 +1,43 @@
-# React + Vite
+# Autopilot — Parametrizações Transversais
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Protótipo de interface para parametrização das regras transversais do módulo Autopilot da BHub. Permite configurar e gerenciar as regras que se aplicam a todas as trilhas (Fiscal, DP, Contábil etc.), bem como regras específicas por empresa.
 
-Currently, two official plugins are available:
+## Funcionalidades
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+### Regras Gerais
+- **Feriados**: cadastro de feriados federais, estaduais e municipais por vigência (2024–2027), com toggle para incluir/excluir do cálculo
+- **INSS**: tabela de faixas e alíquotas progressivas por vigência
+- **IRRF**: tabela de faixas, alíquotas e parcelas de dedução por vigência
+- Suporte a múltiplas vigências com histórico e status (vigente / histórico / não iniciada)
+- Busca de regras dentro de cada seção
+- Confirmação antes de excluir registros
 
-## React Compiler
+### Regras por Empresa (trilha Fiscal)
+- **CFOP**: base nacional de CFOPs (saída/entrada, escopo, origem) com exceções por empresa
+- **Fornecedor × Plano de Contas**: vínculo fornecedor → CFOP + Acumulador por empresa
+- **Acumulador × Conta Contábil**: mapeamento de acumuladores para contas contábeis (padrão ou personalizado)
+- **Simples Nacional**: tabela de anexos (I–V) por atividade com flag de uso
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## Stack
 
-## Expanding the ESLint configuration
+- **React 19** + **Vite**
+- **Tailwind CSS** (via CDN no protótipo)
+- **Lucide React** para ícones
+- Design System da BHub portado via `style` inline (tokens de cor, sombra, tipografia)
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+## Rodando localmente
+
+```bash
+npm install
+npm run dev
+```
+
+Acesse `http://localhost:5173`.
+
+## Contexto
+
+Este repositório é um protótipo funcional criado para validação de UX/produto com as equipes de Fiscal (Elizandra, Jeisy) e DP (Jeniffer Dauricio). Não há integração com backend — todos os dados são ilustrativos e definidos no próprio componente `AutopilotRegras.jsx`.
+
+Decisões de produto relevantes registradas no código:
+- CFOP e Simples Nacional (base nacional) vivem em "Regras por trilha > Fiscal", fora dos parâmetros por empresa — decisão da reunião de 17/07 (Fernando + Jeniffer)
+- Exceções de CFOP por empresa permanecem dentro dos parâmetros por empresa

@@ -520,10 +520,124 @@ function SidebarMenuSubButton({ isActive, disabled, onClick, children }) {
    array compartilhado, então trocar a vigência não tinha efeito)
    ================================================================================ */
 const EMPRESAS = [
-  { nome: "Padaria Aurora", codigo: "PA-0011", resp: "Elizandra Souza", optanteSimples: true },
-  { nome: "Metalúrgica Sigma", codigo: "MS-0027", resp: "Wender Jonathan", optanteSimples: false },
-  { nome: "Comércio Horizonte", codigo: "CH-0042", resp: "Andressa Lima", optanteSimples: true },
+  {
+    nome: "Padaria Aurora", codigo: "PA-0011", resp: "Elizandra Souza", optanteSimples: true,
+    dadosGerais: {
+      razaoSocial: "Padaria Aurora Ltda", nomeFantasia: "Padaria Aurora", tipoInscricao: "CNPJ",
+      cnpj: "12.345.678/0001-90", ie: "10.111.222-3", im: "123456-7",
+      endereco: "Rua das Flores, 120 — Setor Bueno", municipio: "Goiânia", uf: "GO", cep: "74.223-000",
+      telefone: "(62) 3210-4455", email: "contato@padariaaurora.com.br",
+      naturezaJuridica: "206-2 — Sociedade Empresária Limitada", regimeTributarioFederal: "Simples Nacional",
+      inicioAtividade: "15/03/2015", statusCliente: "ativo", clienteDesde: "15/03/2015", dataInativacao: null,
+      duracaoContrato: "Indeterminado", certificadoDigital: "Válido até 20/11/2026", observacoesGerais: "",
+    },
+    atividades: { cnaePrincipal: "1091-1/00", cnaeSecundarios: ["4721-1/02", "5611-2/01"] },
+  },
+  {
+    nome: "Metalúrgica Sigma", codigo: "MS-0027", resp: "Wender Jonathan", optanteSimples: false,
+    dadosGerais: {
+      razaoSocial: "Metalúrgica Sigma Ltda", nomeFantasia: "Sigma Metais", tipoInscricao: "CNPJ",
+      cnpj: "06.265.226/0001-09", ie: "10.234.567-8", im: "987654-3",
+      endereco: "Av. Industrial, 850 — Distrito Industrial", municipio: "Goiânia", uf: "GO", cep: "74.675-000",
+      telefone: "(62) 3299-7788", email: "contato@sigmametais.com.br",
+      naturezaJuridica: "206-2 — Sociedade Empresária Limitada", regimeTributarioFederal: "Lucro Presumido",
+      inicioAtividade: "02/06/2009", statusCliente: "ativo", clienteDesde: "02/06/2009", dataInativacao: null,
+      duracaoContrato: "12 meses, renovação automática", certificadoDigital: "Válido até 08/04/2027", observacoesGerais: "Empresa com filiais — aguardando definição do campo Empresa Centralizadora.",
+    },
+    atividades: { cnaePrincipal: "2599-3/99", cnaeSecundarios: ["2542-0/00"] },
+  },
+  {
+    nome: "Comércio Horizonte", codigo: "CH-0042", resp: "Andressa Lima", optanteSimples: true,
+    dadosGerais: {
+      razaoSocial: "Comércio Horizonte Ltda", nomeFantasia: "Horizonte", tipoInscricao: "CNPJ",
+      cnpj: "22.333.444/0001-55", ie: "10.345.678-1", im: "456123-9",
+      endereco: "Rua T-30, 540 — Setor Bueno", municipio: "Goiânia", uf: "GO", cep: "74.230-030",
+      telefone: "(62) 3245-1122", email: "contato@horizontecomercio.com.br",
+      naturezaJuridica: "206-2 — Sociedade Empresária Limitada", regimeTributarioFederal: "Simples Nacional",
+      inicioAtividade: "22/09/2020", statusCliente: "inativo", clienteDesde: "22/09/2020", dataInativacao: "12/07/2026",
+      duracaoContrato: "Indeterminado", certificadoDigital: "Expirado em 01/02/2026", observacoesGerais: "",
+    },
+    atividades: { cnaePrincipal: "4721-1/02", cnaeSecundarios: [] },
+  },
+  {
+    nome: "Metalúrgica Sigma — Filial Anápolis", codigo: "MS-0027-F1", resp: "Wender Jonathan", optanteSimples: false,
+    dadosGerais: {
+      razaoSocial: "Metalúrgica Sigma Ltda — Filial Anápolis", nomeFantasia: "Sigma Metais Anápolis", tipoInscricao: "CNPJ",
+      cnpj: "06.265.226/0002-80", ie: "10.234.568-6", im: "987655-1",
+      endereco: "Rod. BR-153, Km 12 — Distrito Agroindustrial", municipio: "Anápolis", uf: "GO", cep: "75.132-560",
+      telefone: "(62) 3299-7790", email: "anapolis@sigmametais.com.br",
+      naturezaJuridica: "206-2 — Sociedade Empresária Limitada", regimeTributarioFederal: "Lucro Presumido",
+      inicioAtividade: "10/02/2018", statusCliente: "ativo", clienteDesde: "10/02/2018", dataInativacao: null,
+      duracaoContrato: "12 meses, renovação automática", certificadoDigital: "Válido até 08/04/2027", observacoesGerais: "",
+    },
+    atividades: { cnaePrincipal: "2599-3/99", cnaeSecundarios: [] },
+  },
+  {
+    nome: "Metalúrgica Sigma — Filial Trindade", codigo: "MS-0027-F2", resp: "Wender Jonathan", optanteSimples: false,
+    dadosGerais: {
+      razaoSocial: "Metalúrgica Sigma Ltda — Filial Trindade", nomeFantasia: "Sigma Metais Trindade", tipoInscricao: "CNPJ",
+      cnpj: "06.265.226/0003-61", ie: "10.234.569-4", im: "987656-0",
+      endereco: "Av. Contorno, 2200 — Distrito Industrial II", municipio: "Trindade", uf: "GO", cep: "75.380-010",
+      telefone: "(62) 3299-7791", email: "trindade@sigmametais.com.br",
+      naturezaJuridica: "206-2 — Sociedade Empresária Limitada", regimeTributarioFederal: "Lucro Presumido",
+      inicioAtividade: "05/09/2021", statusCliente: "ativo", clienteDesde: "05/09/2021", dataInativacao: null,
+      duracaoContrato: "12 meses, renovação automática", certificadoDigital: "Válido até 08/04/2027", observacoesGerais: "",
+    },
+    atividades: { cnaePrincipal: "2599-3/99", cnaeSecundarios: [] },
+  },
 ];
+
+// Registro unificado de sócios (documento de pré-requisitos, 4.2) — um sócio pode
+// participar de mais de uma empresa, por isso o cadastro é central e o Quadro
+// Societário de cada empresa só referencia esse registro + % de participação.
+const SOCIOS_INICIAL = [
+  {
+    id: 1, nome: "Renato Zonzini Bocabello", cpf: "200.000.000-27",
+    participacoes: [{ empresaCodigo: "MS-0027", percentual: 100, quotasIntegralizadas: 100 }],
+  },
+  {
+    id: 2, nome: "Elizandra Souza", cpf: "310.111.222-33",
+    participacoes: [{ empresaCodigo: "PA-0011", percentual: 60, quotasIntegralizadas: 60 }],
+  },
+  {
+    id: 3, nome: "Marcos Vinícius Souza", cpf: "410.222.333-44",
+    participacoes: [{ empresaCodigo: "PA-0011", percentual: 40, quotasIntegralizadas: 40 }],
+  },
+  {
+    id: 4, nome: "Andressa Lima", cpf: "510.333.444-55",
+    participacoes: [{ empresaCodigo: "CH-0042", percentual: 100, quotasIntegralizadas: 100 }],
+  },
+];
+
+// Registro de contadores (documento de pré-requisitos, 4.1) — guia própria, só
+// referenciada a partir da tela de Empresa (não precisa estar embutida nela).
+const CONTADORES_INICIAL = [
+  { id: 1, nome: "Contador da Empresa Exemplo", cpf: "200.000.000-27", crc: "1SC123456/O-4", empresasAtendidas: ["MS-0027", "MS-0027-F1", "MS-0027-F2"] },
+  { id: 2, nome: "Juliana Prado Contabilidade", cpf: "620.444.555-66", crc: "1GO987654/O-2", empresasAtendidas: ["PA-0011", "CH-0042"] },
+];
+
+// Empresa centralizadora — documento de pré-requisitos, 3.5: indica se a empresa é a
+// centralizadora (matriz) das informações, usado só quando há matriz com filiais. Mapa
+// separado do EMPRESAS (que é estático) pra permitir editar a centralização no protótipo
+// sem precisar tornar todo o cadastro de empresas stateful.
+const CENTRALIZACAO_INICIAL = {
+  "PA-0011": { tipo: "não se aplica", vinculoCodigo: null },
+  "MS-0027": { tipo: "matriz", vinculoCodigo: null },
+  "MS-0027-F1": { tipo: "filial", vinculoCodigo: "MS-0027" },
+  "MS-0027-F2": { tipo: "filial", vinculoCodigo: "MS-0027" },
+  "CH-0042": { tipo: "não se aplica", vinculoCodigo: null },
+};
+const CENTRALIZACAO_OPCOES = ["Centralizadora (Matriz)", "Filial", "Não se aplica"];
+function centralizacaoTipoParaLabel(tipo) {
+  if (tipo === "matriz") return "Centralizadora (Matriz)";
+  if (tipo === "filial") return "Filial";
+  return "Não se aplica";
+}
+function centralizacaoLabelParaTipo(label) {
+  if (label === "Centralizadora (Matriz)") return "matriz";
+  if (label === "Filial") return "filial";
+  return "não se aplica";
+}
 
 const UFS = ["GO", "SP", "RJ"];
 const MUNICIPIOS_POR_UF = { GO: ["Goiânia"], SP: ["São Paulo"], RJ: ["Rio de Janeiro"] };
@@ -1154,8 +1268,21 @@ export default function AutopilotRegras() {
   const [uf, setUf] = useState("Todas");
   const [municipio, setMunicipio] = useState("Todos");
   const [vigencia, setVigencia] = useState("2026");
-  const [dialogOpen, setDialogOpen] = useState(false);
-  const [empresaSel, setEmpresaSel] = useState(null);
+  // Empresas — cadastro completo (documento de pré-requisitos, seções 3 e 4)
+  const [empresasTab, setEmpresasTab] = useState("cadastro"); // 'cadastro' | 'socios' | 'contadores'
+  const [empresaCadastroSel, setEmpresaCadastroSel] = useState(null);
+  const [cadastroDetalheTab, setCadastroDetalheTab] = useState("geral"); // 'geral' | 'atividades' | 'societario'
+  const [socios, setSocios] = useState(SOCIOS_INICIAL);
+  const [contadores] = useState(CONTADORES_INICIAL);
+  const [centralizacaoPorEmpresa, setCentralizacaoPorEmpresa] = useState(CENTRALIZACAO_INICIAL);
+  // Listagem de Empresas — expansão de matriz (data grid aninhado), com busca e
+  // paginação local por matriz para não quebrar o layout com muitas filiais.
+  const [matrizesExpandidas, setMatrizesExpandidas] = useState(new Set());
+  const [buscaFiliaisPorMatriz, setBuscaFiliaisPorMatriz] = useState({});
+  const [qtdVisivelFiliaisPorMatriz, setQtdVisivelFiliaisPorMatriz] = useState({});
+  const [qsSheetOpen, setQsSheetOpen] = useState(false);
+  const [qsEditandoSocioId, setQsEditandoSocioId] = useState(null);
+  const [qsForm, setQsForm] = useState({ socioId: "", percentual: "", quotasIntegralizadas: "" });
   const [parametrosOpen, setParametrosOpen] = useState(true);
   const [regrasTrilhaOpen, setRegrasTrilhaOpen] = useState(true);
   const [sheetOpen, setSheetOpen] = useState(false);
@@ -1816,6 +1943,65 @@ export default function AutopilotRegras() {
       setSection(destino);
     }
   }
+  const FILIAIS_PAGE_SIZE = 6;
+  function toggleMatrizExpandida(codigo) {
+    setMatrizesExpandidas((prev) => {
+      const next = new Set(prev);
+      if (next.has(codigo)) next.delete(codigo); else next.add(codigo);
+      return next;
+    });
+  }
+  function atualizarBuscaFilial(matrizCodigo, valor) {
+    setBuscaFiliaisPorMatriz((prev) => ({ ...prev, [matrizCodigo]: valor }));
+    setQtdVisivelFiliaisPorMatriz((prev) => ({ ...prev, [matrizCodigo]: FILIAIS_PAGE_SIZE }));
+  }
+  function carregarMaisFiliais(matrizCodigo) {
+    setQtdVisivelFiliaisPorMatriz((prev) => ({ ...prev, [matrizCodigo]: (prev[matrizCodigo] || FILIAIS_PAGE_SIZE) + FILIAIS_PAGE_SIZE }));
+  }
+  function abrirCadastroEmpresa(codigo) {
+    setEmpresaCadastroSel(codigo);
+    setCadastroDetalheTab("geral");
+  }
+  function handleAlterarCentralizacao(codigoEmpresa, novoLabel, matrizAncora) {
+    const novoTipo = centralizacaoLabelParaTipo(novoLabel);
+    setCentralizacaoPorEmpresa((prev) => ({
+      ...prev,
+      [codigoEmpresa]: {
+        tipo: novoTipo,
+        vinculoCodigo: novoTipo === "filial" ? matrizAncora : null,
+      },
+    }));
+  }
+  function abrirAdicionarParticipacao() {
+    setQsEditandoSocioId(null);
+    setQsForm({ socioId: "", percentual: "", quotasIntegralizadas: "" });
+    setQsSheetOpen(true);
+  }
+  function abrirEditarParticipacao(socio, participacao) {
+    setQsEditandoSocioId(socio.id);
+    setQsForm({ socioId: String(socio.id), percentual: String(participacao.percentual), quotasIntegralizadas: String(participacao.quotasIntegralizadas) });
+    setQsSheetOpen(true);
+  }
+  function handleSalvarParticipacao() {
+    if (!empresaCadastroSel || !qsForm.socioId) return;
+    const percentual = Number(qsForm.percentual) || 0;
+    const quotasIntegralizadas = Number(qsForm.quotasIntegralizadas) || 0;
+    setSocios((prev) => prev.map((s) => {
+      const participaDestaEmpresa = s.participacoes.some((p) => p.empresaCodigo === empresaCadastroSel);
+      if (String(s.id) === qsForm.socioId) {
+        const outras = s.participacoes.filter((p) => p.empresaCodigo !== empresaCadastroSel);
+        return { ...s, participacoes: [...outras, { empresaCodigo: empresaCadastroSel, percentual, quotasIntegralizadas }] };
+      }
+      if (qsEditandoSocioId && s.id === qsEditandoSocioId && participaDestaEmpresa) {
+        return { ...s, participacoes: s.participacoes.filter((p) => p.empresaCodigo !== empresaCadastroSel) };
+      }
+      return s;
+    }));
+    setQsSheetOpen(false);
+  }
+  function handleExcluirParticipacao(socio) {
+    setSocios((prev) => prev.map((s) => s.id !== socio.id ? s : { ...s, participacoes: s.participacoes.filter((p) => p.empresaCodigo !== empresaCadastroSel) }));
+  }
   function handleSairEPerder() {
     if (section === "regras-trilha-dp") {
       setAtualizacoesPorVigencia((prev) => ({ ...prev, [vigenciaDP]: snapshotAtualizacoesPorVigencia[vigenciaDP] }));
@@ -1881,7 +2067,7 @@ export default function AutopilotRegras() {
     });
   }
   const crumbs = {
-    home: "empresas",
+    empresas: empresaCadastroSel ? `empresas / ${EMPRESAS.find((e) => e.codigo === empresaCadastroSel)?.nome}` : "empresas",
     regras: "regras gerais",
     "regras-trilha-fiscal": "regras por trilha / fiscal",
     "regras-trilha-dp": "regras por trilha / dp",
@@ -1907,9 +2093,8 @@ export default function AutopilotRegras() {
           <SidebarGroupLabel>Plataforma</SidebarGroupLabel>
           <SidebarMenu>
             <SidebarMenuItem>
-              <SidebarMenuButton disabled>
+              <SidebarMenuButton isActive={section === "empresas"} onClick={() => tentarNavegar("empresas")}>
                 <Building2 className="size-4" /> Empresas
-                <SidebarMenuBadge>escopo a definir</SidebarMenuBadge>
               </SidebarMenuButton>
             </SidebarMenuItem>
           </SidebarMenu>
@@ -2042,39 +2227,470 @@ export default function AutopilotRegras() {
             </AlertDescription>
           </Alert>
 
-          {/* ============ HOME ============ */}
-          {section === "home" && (
-            <section className="flex flex-col gap-4">
-              <div>
-                <h1 className="text-xl font-semibold mb-1">Empresas</h1>
-                <p className="text-sm max-w-xl" style={{ color: T.mutedForeground }}>
-                  Selecione uma empresa para visualizar e gerenciar suas regras.
-                </p>
-              </div>
-              <div className="flex flex-col gap-2">
-                {EMPRESAS.map((e) => (
-                  <Card key={e.codigo} className="py-4 flex-row items-center justify-between px-5" style={{ boxShadow: "none" }}>
-                    <div className="flex flex-col gap-2">
-                      <div className="text-sm font-semibold">{e.nome}</div>
-                      <div className="flex items-center gap-6">
-                        <div className="flex flex-col gap-0.5">
-                          <span className="text-[11px]" style={{ color: T.mutedForeground }}>Código</span>
-                          <span className="text-xs">{e.codigo}</span>
-                        </div>
-                        <div className="flex flex-col gap-0.5">
-                          <span className="text-[11px]" style={{ color: T.mutedForeground }}>Responsável</span>
-                          <span className="text-xs">{e.resp}</span>
-                        </div>
-                      </div>
+          {/* ============ EMPRESAS ============ */}
+          {section === "empresas" && (() => {
+            const empresaCadastro = empresaCadastroSel ? EMPRESAS.find((e) => e.codigo === empresaCadastroSel) : null;
+            const participacoesDaEmpresa = empresaCadastroSel
+              ? socios.flatMap((s) => s.participacoes.filter((p) => p.empresaCodigo === empresaCadastroSel).map((p) => ({ socio: s, ...p })))
+              : [];
+            const sociosDisponiveisParaVincular = socios.filter((s) =>
+              !s.participacoes.some((p) => p.empresaCodigo === empresaCadastroSel) || String(s.id) === String(qsForm.socioId)
+            );
+
+            return (
+              <section className="flex flex-col gap-4">
+                <div>
+                  <h1 className="text-xl font-semibold mb-1">Empresas</h1>
+                  <p className="text-sm max-w-xl" style={{ color: T.mutedForeground }}>
+                    Cadastro completo por empresa. Dados gerais e atividades são espelhados do Cockpit (somente leitura) — o
+                    quadro societário e os registros de sócios e contadores são mantidos aqui no Autopilot.
+                  </p>
+                </div>
+
+                <Tabs>
+                  <TabsList>
+                    <TabsTrigger active={empresasTab === "cadastro"} onClick={() => { setEmpresasTab("cadastro"); }}>Empresas</TabsTrigger>
+                    <TabsTrigger active={empresasTab === "socios"} onClick={() => { setEmpresasTab("socios"); setEmpresaCadastroSel(null); }}>Sócios</TabsTrigger>
+                    <TabsTrigger active={empresasTab === "contadores"} onClick={() => { setEmpresasTab("contadores"); setEmpresaCadastroSel(null); }}>Contadores</TabsTrigger>
+                  </TabsList>
+                </Tabs>
+
+                {empresasTab === "cadastro" && !empresaCadastro && (() => {
+                  const matrizes = EMPRESAS.filter((e) => centralizacaoPorEmpresa[e.codigo]?.tipo === "matriz");
+                  const avulsas = EMPRESAS.filter((e) => {
+                    const t = centralizacaoPorEmpresa[e.codigo]?.tipo;
+                    return t !== "matriz" && t !== "filial";
+                  });
+                  function filiaisDe(matrizCodigo) {
+                    return EMPRESAS.filter((e) => centralizacaoPorEmpresa[e.codigo]?.vinculoCodigo === matrizCodigo);
+                  }
+                  function situacaoBadge(e) {
+                    const ativo = e.dadosGerais.statusCliente === "ativo";
+                    return <Badge variant={ativo ? "success" : "outline"}>{ativo ? "Ativa" : "Inativa"}</Badge>;
+                  }
+                  return (
+                    <Table>
+                      <TableHeader>
+                        <tr>
+                          <TableHead>Empresa</TableHead>
+                          <TableHead>Código</TableHead>
+                          <TableHead>Responsável</TableHead>
+                          <TableHead>Situação</TableHead>
+                          <TableHead></TableHead>
+                        </tr>
+                      </TableHeader>
+                      <TableBody>
+                        {matrizes.map((m) => {
+                          const filiais = filiaisDe(m.codigo);
+                          const expandida = matrizesExpandidas.has(m.codigo);
+                          const busca = buscaFiliaisPorMatriz[m.codigo] || "";
+                          const filiaisFiltradas = filiais.filter((f) => `${f.nome} ${f.codigo}`.toLowerCase().includes(busca.toLowerCase()));
+                          const qtdVisivel = qtdVisivelFiliaisPorMatriz[m.codigo] || FILIAIS_PAGE_SIZE;
+                          const filiaisVisiveis = filiaisFiltradas.slice(0, qtdVisivel);
+                          return (
+                            <React.Fragment key={m.codigo}>
+                              <TableRow>
+                                <TableCell>
+                                  <div className="flex items-center gap-2">
+                                    <button type="button" onClick={() => toggleMatrizExpandida(m.codigo)} className="cursor-pointer shrink-0" style={{ color: T.mutedForeground }}>
+                                      <ChevronRight className="size-4 transition-transform" style={{ transform: expandida ? "rotate(90deg)" : "rotate(0deg)" }} />
+                                    </button>
+                                    <span className="text-sm font-medium">{m.nome}</span>
+                                    <Badge variant="info">Matriz</Badge>
+                                    {filiais.length > 0 && (
+                                      <span className="text-xs" style={{ color: T.mutedForeground }}>· {filiais.length} filial{filiais.length === 1 ? "" : "is"}</span>
+                                    )}
+                                  </div>
+                                </TableCell>
+                                <TableCell>{m.codigo}</TableCell>
+                                <TableCell>{m.resp}</TableCell>
+                                <TableCell>{situacaoBadge(m)}</TableCell>
+                                <TableCell><Button size="sm" variant="outline" onClick={() => abrirCadastroEmpresa(m.codigo)}>ver cadastro →</Button></TableCell>
+                              </TableRow>
+
+                              {expandida && (
+                                <tr>
+                                  <td colSpan={5} className="p-0">
+                                    <div className="flex flex-col gap-3 px-6 py-4" style={{ background: T.muted, borderBottom: `1px solid ${T.border}` }}>
+                                      {filiais.length > FILIAIS_PAGE_SIZE && (
+                                        <Input
+                                          placeholder="Buscar filial por nome ou código..."
+                                          value={busca}
+                                          onChange={(ev) => atualizarBuscaFilial(m.codigo, ev.target.value)}
+                                          className="w-72"
+                                        />
+                                      )}
+                                      <Table>
+                                        <TableHeader>
+                                          <tr>
+                                            <TableHead>Filial</TableHead>
+                                            <TableHead>Código</TableHead>
+                                            <TableHead>Responsável</TableHead>
+                                            <TableHead>Situação</TableHead>
+                                            <TableHead></TableHead>
+                                          </tr>
+                                        </TableHeader>
+                                        <TableBody>
+                                          {filiaisVisiveis.length === 0 && (
+                                            <tr><td colSpan={5} className="px-6 py-6 text-center text-xs" style={{ color: T.mutedForeground }}>Nenhuma filial encontrada.</td></tr>
+                                          )}
+                                          {filiaisVisiveis.map((f) => (
+                                            <TableRow key={f.codigo}>
+                                              <TableCell>
+                                                <div className="flex items-center gap-2">
+                                                  <Badge variant="secondary">Filial</Badge>
+                                                  <span className="text-sm">{f.nome}</span>
+                                                </div>
+                                              </TableCell>
+                                              <TableCell>{f.codigo}</TableCell>
+                                              <TableCell>{f.resp}</TableCell>
+                                              <TableCell>{situacaoBadge(f)}</TableCell>
+                                              <TableCell><Button size="sm" variant="outline" onClick={() => abrirCadastroEmpresa(f.codigo)}>ver cadastro →</Button></TableCell>
+                                            </TableRow>
+                                          ))}
+                                        </TableBody>
+                                      </Table>
+                                      {filiaisFiltradas.length > qtdVisivel && (
+                                        <Button size="sm" variant="ghost" onClick={() => carregarMaisFiliais(m.codigo)} className="w-fit">
+                                          Mostrar mais ({filiaisFiltradas.length - qtdVisivel} restantes)
+                                        </Button>
+                                      )}
+                                    </div>
+                                  </td>
+                                </tr>
+                              )}
+                            </React.Fragment>
+                          );
+                        })}
+
+                        {avulsas.map((e) => (
+                          <TableRow key={e.codigo}>
+                            <TableCell><span className="text-sm font-medium">{e.nome}</span></TableCell>
+                            <TableCell>{e.codigo}</TableCell>
+                            <TableCell>{e.resp}</TableCell>
+                            <TableCell>{situacaoBadge(e)}</TableCell>
+                            <TableCell><Button size="sm" variant="outline" onClick={() => abrirCadastroEmpresa(e.codigo)}>ver cadastro →</Button></TableCell>
+                          </TableRow>
+                        ))}
+                      </TableBody>
+                    </Table>
+                  );
+                })()}
+
+                {empresasTab === "cadastro" && empresaCadastro && (
+                  <div className="flex flex-col gap-4">
+                    <div className="flex items-center justify-between">
+                      <button className="text-xs font-medium flex items-center gap-1 cursor-pointer" style={{ color: T.infoText }} onClick={() => setEmpresaCadastroSel(null)}>
+                        <ChevronDown className="size-3.5 rotate-90" /> voltar para a lista
+                      </button>
+                      <Badge variant="outline">{empresaCadastro.codigo}</Badge>
                     </div>
-                    <Button size="sm" variant="outline" onClick={() => { setEmpresaSel(e.nome); setDialogOpen(true); }}>
-                      abrir regras →
-                    </Button>
+
+                    <Tabs>
+                      <TabsList>
+                        <TabsTrigger active={cadastroDetalheTab === "geral"} onClick={() => setCadastroDetalheTab("geral")}>Dados gerais</TabsTrigger>
+                        <TabsTrigger active={cadastroDetalheTab === "atividades"} onClick={() => setCadastroDetalheTab("atividades")}>Atividades</TabsTrigger>
+                        <TabsTrigger active={cadastroDetalheTab === "societario"} onClick={() => setCadastroDetalheTab("societario")}>Quadro societário</TabsTrigger>
+                        <TabsTrigger active={cadastroDetalheTab === "centralizadora"} onClick={() => setCadastroDetalheTab("centralizadora")}>Empresa centralizadora</TabsTrigger>
+                      </TabsList>
+                    </Tabs>
+
+                    {cadastroDetalheTab === "geral" && (() => {
+                      const dg = empresaCadastro.dadosGerais;
+                      const contadorVinculado = contadores.find((c) => c.empresasAtendidas.includes(empresaCadastro.codigo));
+                      return (
+                        <Card className="gap-5">
+                          <CardHeader>
+                            <div className="flex items-center gap-2">
+                              <CardTitle>{dg.razaoSocial}</CardTitle>
+                              <Badge variant="secondary">leitura · cockpit</Badge>
+                            </div>
+                            <CardDescription>Espelhado do Cockpit — para editar, use o cadastro de empresas do Cockpit/Contexto.</CardDescription>
+                          </CardHeader>
+
+                          <CardContent className="grid grid-cols-2 gap-x-6 gap-y-3">
+                            <div className="flex flex-col gap-0.5">
+                              <span className="text-[11px]" style={{ color: T.mutedForeground }}>Nome fantasia</span>
+                              <span className="text-sm">{dg.nomeFantasia}</span>
+                            </div>
+                            <div className="flex flex-col gap-0.5">
+                              <span className="text-[11px]" style={{ color: T.mutedForeground }}>CNPJ</span>
+                              <span className="text-sm">{dg.cnpj}</span>
+                            </div>
+                            <div className="flex flex-col gap-0.5">
+                              <span className="text-[11px]" style={{ color: T.mutedForeground }}>Natureza jurídica</span>
+                              <span className="text-sm">{dg.naturezaJuridica}</span>
+                            </div>
+                            <div className="flex flex-col gap-0.5">
+                              <span className="text-[11px]" style={{ color: T.mutedForeground }}>Regime tributário federal</span>
+                              <span className="text-sm">{dg.regimeTributarioFederal}</span>
+                            </div>
+                            <div className="flex flex-col gap-0.5">
+                              <span className="text-[11px]" style={{ color: T.mutedForeground }}>Inscrição estadual</span>
+                              <span className="text-sm">{dg.ie}</span>
+                            </div>
+                            <div className="flex flex-col gap-0.5">
+                              <span className="text-[11px]" style={{ color: T.mutedForeground }}>Inscrição municipal</span>
+                              <span className="text-sm">{dg.im}</span>
+                            </div>
+                            <div className="flex flex-col gap-0.5 col-span-2">
+                              <span className="text-[11px]" style={{ color: T.mutedForeground }}>Endereço</span>
+                              <span className="text-sm">{dg.endereco} — {dg.municipio}/{dg.uf} · CEP {dg.cep}</span>
+                            </div>
+                            <div className="flex flex-col gap-0.5">
+                              <span className="text-[11px]" style={{ color: T.mutedForeground }}>Telefone</span>
+                              <span className="text-sm">{dg.telefone}</span>
+                            </div>
+                            <div className="flex flex-col gap-0.5">
+                              <span className="text-[11px]" style={{ color: T.mutedForeground }}>E-mail</span>
+                              <span className="text-sm">{dg.email}</span>
+                            </div>
+                          </CardContent>
+
+                          <CardContent className="pt-4" style={{ borderTop: `1px solid ${T.border}` }}>
+                            <div className="text-xs font-semibold mb-3">Status e vínculos</div>
+                            <div className="grid grid-cols-2 gap-x-6 gap-y-3">
+                              <div className="flex flex-col gap-0.5">
+                                <span className="text-[11px]" style={{ color: T.mutedForeground }}>Contador responsável</span>
+                                <span className="text-sm">
+                                  {contadorVinculado ? `${contadorVinculado.nome} — ${contadorVinculado.crc}` : "Nenhum contador vinculado ainda"}
+                                </span>
+                              </div>
+                              <div className="flex flex-col gap-0.5">
+                                <span className="text-[11px]" style={{ color: T.mutedForeground }}>Início de atividade da empresa</span>
+                                <span className="text-sm">{dg.inicioAtividade}</span>
+                              </div>
+                              <div className="flex flex-col gap-0.5">
+                                <span className="text-[11px]" style={{ color: T.mutedForeground }}>Status do cliente</span>
+                                <Badge variant={dg.statusCliente === "ativo" ? "success" : "outline"} className="w-fit">{dg.statusCliente}</Badge>
+                              </div>
+                              <div className="flex flex-col gap-0.5">
+                                <span className="text-[11px]" style={{ color: T.mutedForeground }}>Cliente desde</span>
+                                <span className="text-sm">{dg.clienteDesde}</span>
+                              </div>
+                              {dg.statusCliente === "inativo" && (
+                                <div className="flex flex-col gap-0.5">
+                                  <span className="text-[11px]" style={{ color: T.mutedForeground }}>Data de inativação</span>
+                                  <span className="text-sm">{dg.dataInativacao}</span>
+                                </div>
+                              )}
+                              <div className="flex flex-col gap-0.5">
+                                <span className="text-[11px]" style={{ color: T.mutedForeground }}>Duração do contrato</span>
+                                <span className="text-sm">{dg.duracaoContrato}</span>
+                              </div>
+                            </div>
+                          </CardContent>
+
+                          <CardContent className="pt-4" style={{ borderTop: `1px solid ${T.border}` }}>
+                            <div className="text-xs font-semibold mb-3">Documentos</div>
+                            <div className="grid grid-cols-2 gap-x-6 gap-y-3">
+                              <div className="flex flex-col gap-0.5">
+                                <span className="text-[11px]" style={{ color: T.mutedForeground }}>Certificado digital</span>
+                                <span className="text-sm">{dg.certificadoDigital}</span>
+                              </div>
+                              <div className="flex flex-col gap-0.5 col-span-2">
+                                <span className="text-[11px]" style={{ color: T.mutedForeground }}>Observações gerais</span>
+                                <span className="text-sm">{dg.observacoesGerais || "—"}</span>
+                              </div>
+                            </div>
+                          </CardContent>
+                        </Card>
+                      );
+                    })()}
+
+                    {cadastroDetalheTab === "atividades" && (
+                      <Card className="gap-3">
+                        <CardHeader>
+                          <div className="flex items-center gap-2">
+                            <CardTitle>Atividades</CardTitle>
+                            <Badge variant="secondary">leitura · cockpit</Badge>
+                          </div>
+                          <CardDescription>CNAE principal e secundários — preenchimento obrigatório no Cockpit.</CardDescription>
+                        </CardHeader>
+                        <CardContent className="grid grid-cols-2 gap-x-6 gap-y-3">
+                          <div className="flex flex-col gap-0.5">
+                            <span className="text-[11px]" style={{ color: T.mutedForeground }}>CNAE principal</span>
+                            <span className="text-sm">{empresaCadastro.atividades.cnaePrincipal}</span>
+                          </div>
+                          <div className="flex flex-col gap-0.5">
+                            <span className="text-[11px]" style={{ color: T.mutedForeground }}>CNAEs secundários</span>
+                            <span className="text-sm">{empresaCadastro.atividades.cnaeSecundarios.length > 0 ? empresaCadastro.atividades.cnaeSecundarios.join(", ") : "—"}</span>
+                          </div>
+                        </CardContent>
+                      </Card>
+                    )}
+
+                    {cadastroDetalheTab === "societario" && (
+                      <Card className="gap-4">
+                        <CardHeader>
+                          <div className="flex items-center justify-between">
+                            <div>
+                              <CardTitle>Quadro societário</CardTitle>
+                              <CardDescription>Sócios vinculados a {empresaCadastro.nome}, com % de participação — referencia o registro unificado de Sócios.</CardDescription>
+                            </div>
+                            <Button variant="outline" size="sm" onClick={abrirAdicionarParticipacao}>+ Adicionar sócio</Button>
+                          </div>
+                        </CardHeader>
+                        <CardContent>
+                          <Table>
+                            <TableHeader>
+                              <tr>
+                                <TableHead>Sócio</TableHead>
+                                <TableHead>CPF</TableHead>
+                                <TableHead>Participação</TableHead>
+                                <TableHead>Quotas integralizadas</TableHead>
+                                <TableHead></TableHead>
+                              </tr>
+                            </TableHeader>
+                            <TableBody>
+                              {participacoesDaEmpresa.length === 0 && (
+                                <tr><td colSpan={5} className="px-6 py-8 text-center text-xs" style={{ color: T.mutedForeground }}>Nenhum sócio vinculado a esta empresa ainda.</td></tr>
+                              )}
+                              {participacoesDaEmpresa.map(({ socio, ...part }) => (
+                                <TableRow key={socio.id}>
+                                  <TableCell>{socio.nome}</TableCell>
+                                  <TableCell>{socio.cpf}</TableCell>
+                                  <TableCell>{part.percentual}%</TableCell>
+                                  <TableCell>{part.quotasIntegralizadas}</TableCell>
+                                  <TableCell className="flex gap-3">
+                                    <span onClick={() => abrirEditarParticipacao(socio, part)} className="text-xs font-medium cursor-pointer" style={{ color: T.infoText }}>editar</span>
+                                    <span onClick={() => handleExcluirParticipacao(socio)} className="text-xs font-medium cursor-pointer" style={{ color: T.destructive }}>excluir</span>
+                                  </TableCell>
+                                </TableRow>
+                              ))}
+                            </TableBody>
+                          </Table>
+                        </CardContent>
+                      </Card>
+                    )}
+
+                    {cadastroDetalheTab === "centralizadora" && (() => {
+                      const infoAtual = centralizacaoPorEmpresa[empresaCadastro.codigo] || { tipo: "não se aplica", vinculoCodigo: null };
+                      const matrizCodigo = infoAtual.tipo === "matriz" ? empresaCadastro.codigo : infoAtual.vinculoCodigo;
+                      const grupo = matrizCodigo
+                        ? EMPRESAS.filter((e) => e.codigo === matrizCodigo || centralizacaoPorEmpresa[e.codigo]?.vinculoCodigo === matrizCodigo)
+                        : [empresaCadastro];
+                      return (
+                        <Card className="gap-4">
+                          <CardHeader>
+                            <CardTitle>Empresa centralizadora</CardTitle>
+                            <CardDescription>
+                              {infoAtual.tipo === "não se aplica"
+                                ? `${empresaCadastro.nome} não tem relação de matriz/filial cadastrada.`
+                                : `Grupo de ${EMPRESAS.find((e) => e.codigo === matrizCodigo)?.nome} — indica qual empresa recebe as informações consolidadas das filiais.`}
+                            </CardDescription>
+                          </CardHeader>
+                          <CardContent>
+                            <Table>
+                              <TableHeader>
+                                <tr>
+                                  <TableHead>Código</TableHead>
+                                  <TableHead>Razão Social</TableHead>
+                                  <TableHead>Tipo de Inscrição</TableHead>
+                                  <TableHead>Inscrição</TableHead>
+                                  <TableHead>Situação</TableHead>
+                                  <TableHead>Centralização</TableHead>
+                                </tr>
+                              </TableHeader>
+                              <TableBody>
+                                {grupo.map((e) => {
+                                  const info = centralizacaoPorEmpresa[e.codigo] || { tipo: "não se aplica" };
+                                  return (
+                                    <TableRow key={e.codigo} style={e.codigo === empresaCadastro.codigo ? { background: T.accent } : {}}>
+                                      <TableCell>{e.codigo}</TableCell>
+                                      <TableCell>{e.dadosGerais.razaoSocial}</TableCell>
+                                      <TableCell>{e.dadosGerais.tipoInscricao}</TableCell>
+                                      <TableCell>{e.dadosGerais.cnpj}</TableCell>
+                                      <TableCell><Badge variant={e.dadosGerais.statusCliente === "ativo" ? "success" : "outline"}>{e.dadosGerais.statusCliente === "ativo" ? "Ativa" : "Inativa"}</Badge></TableCell>
+                                      <TableCell>
+                                        <SelectField
+                                          value={centralizacaoTipoParaLabel(info.tipo)}
+                                          onChange={(ev) => handleAlterarCentralizacao(e.codigo, ev.target.value, matrizCodigo || e.codigo)}
+                                          className="w-52"
+                                        >
+                                          {CENTRALIZACAO_OPCOES.map((o) => <option key={o}>{o}</option>)}
+                                        </SelectField>
+                                      </TableCell>
+                                    </TableRow>
+                                  );
+                                })}
+                              </TableBody>
+                            </Table>
+                          </CardContent>
+                          <CardFooter>
+                            <Info className="size-3.5 shrink-0" style={{ color: T.mutedForeground }} />
+                            <span className="text-xs" style={{ color: T.mutedForeground }}><b style={{ color: T.foreground }}>Campo de extrema importância futura.</b> Hoje não há empresas com matriz/filial fora deste grupo de exemplo, mas a definição de qual empresa centraliza as informações impacta diretamente a consolidação contábil.</span>
+                          </CardFooter>
+                        </Card>
+                      );
+                    })()}
+                  </div>
+                )}
+
+                {empresasTab === "socios" && (
+                  <Card className="gap-3">
+                    <CardHeader>
+                      <CardTitle>Sócios</CardTitle>
+                      <CardDescription>Registro unificado — um sócio pode participar de mais de uma empresa.</CardDescription>
+                    </CardHeader>
+                    <CardContent>
+                      <Table>
+                        <TableHeader>
+                          <tr>
+                            <TableHead>Nome</TableHead>
+                            <TableHead>CPF</TableHead>
+                            <TableHead>Empresas vinculadas</TableHead>
+                          </tr>
+                        </TableHeader>
+                        <TableBody>
+                          {socios.map((s) => (
+                            <TableRow key={s.id}>
+                              <TableCell>{s.nome}</TableCell>
+                              <TableCell>{s.cpf}</TableCell>
+                              <TableCell>
+                                {s.participacoes.length === 0 ? "—" : s.participacoes.map((p) => EMPRESAS.find((e) => e.codigo === p.empresaCodigo)?.nome).join(", ")}
+                              </TableCell>
+                            </TableRow>
+                          ))}
+                        </TableBody>
+                      </Table>
+                    </CardContent>
                   </Card>
-                ))}
-              </div>
-            </section>
-          )}
+                )}
+
+                {empresasTab === "contadores" && (
+                  <Card className="gap-3">
+                    <CardHeader>
+                      <CardTitle>Contadores</CardTitle>
+                      <CardDescription>Cadastro de contadores habilitados a assinar demonstrativos — independente da tela de Empresa.</CardDescription>
+                    </CardHeader>
+                    <CardContent>
+                      <Table>
+                        <TableHeader>
+                          <tr>
+                            <TableHead>Nome</TableHead>
+                            <TableHead>CPF</TableHead>
+                            <TableHead>CRC</TableHead>
+                            <TableHead>Empresas atendidas</TableHead>
+                          </tr>
+                        </TableHeader>
+                        <TableBody>
+                          {contadores.map((c) => (
+                            <TableRow key={c.id}>
+                              <TableCell>{c.nome}</TableCell>
+                              <TableCell>{c.cpf}</TableCell>
+                              <TableCell>{c.crc}</TableCell>
+                              <TableCell>{c.empresasAtendidas.map((cod) => EMPRESAS.find((e) => e.codigo === cod)?.nome).join(", ")}</TableCell>
+                            </TableRow>
+                          ))}
+                        </TableBody>
+                      </Table>
+                    </CardContent>
+                  </Card>
+                )}
+              </section>
+            );
+          })()}
 
           {/* ============ REGRAS GERAIS ============ */}
           {/* ============ REGRAS GERAIS ============ */}
@@ -3037,31 +3653,41 @@ export default function AutopilotRegras() {
         </div>
       </main>
 
-      {/* ================= MODAL: ESBOÇO SELEÇÃO DE TRILHA ================= */}
-      <Dialog open={dialogOpen} onOpenChange={setDialogOpen}>
-        <DialogHeader>
-          <span className="text-xs" style={{ color: T.mutedForeground }}>{empresaSel}</span>
-          <DialogTitle>Escolher trilha de regras</DialogTitle>
-        </DialogHeader>
-        <div className="grid grid-cols-2 gap-2.5">
-          <Card className="p-3.5 gap-1" style={{ boxShadow: "none" }}>
-            <BookOpenCheck className="size-4 mb-1" />
-            <div className="text-sm font-semibold">Regras Gerais</div>
-            <div className="text-xs" style={{ color: T.mutedForeground }}>Feriados · INSS · IRRF</div>
-          </Card>
-          {[["DP", Users, "Sindicato · Rubricas"], ["Fiscal", Receipt, "CFOP · Acumuladores"], ["Contábil", Landmark, "Plano de contas"]].map(([label, Icon, desc]) => (
-            <Card key={label} className="p-3.5 gap-1 relative" style={{ boxShadow: "none", opacity: 0.5, cursor: "not-allowed" }}>
-              <Badge variant="secondary" className="absolute top-2.5 right-2.5 text-[10px] px-1.5 py-0">esboço</Badge>
-              <Icon className="size-4 mb-1" />
-              <div className="text-sm font-semibold">{label}</div>
-              <div className="text-xs" style={{ color: T.mutedForeground }}>{desc}</div>
-            </Card>
-          ))}
+      {/* ================= DRAWER: ADICIONAR/EDITAR SÓCIO NO QUADRO SOCIETÁRIO ================= */}
+      <Sheet open={qsSheetOpen} onOpenChange={setQsSheetOpen}>
+        <SheetHeader>
+          <SheetTitle>{qsEditandoSocioId ? "Editar participação" : "Adicionar sócio"}</SheetTitle>
+          <SheetDescription>Vincula um sócio já cadastrado no registro unificado a esta empresa, com % de participação.</SheetDescription>
+        </SheetHeader>
+
+        <div className="flex flex-col gap-4 px-4 overflow-y-auto flex-1">
+          <div className="flex flex-col gap-1.5">
+            <label className="text-xs font-medium" style={{ color: T.mutedForeground }}>Sócio</label>
+            <Combobox
+              value={qsForm.socioId}
+              onChange={(v) => setQsForm((f) => ({ ...f, socioId: v }))}
+              options={(empresaCadastroSel ? socios.filter((s) => !s.participacoes.some((p) => p.empresaCodigo === empresaCadastroSel) || String(s.id) === String(qsForm.socioId)) : socios).map((s) => ({ value: String(s.id), label: `${s.nome} — ${s.cpf}` }))}
+              placeholder="Selecione um sócio"
+              searchPlaceholder="Buscar por nome ou CPF..."
+              emptyText="Nenhum sócio disponível — cadastre em Sócios."
+              width="100%"
+            />
+          </div>
+          <div className="flex flex-col gap-1.5">
+            <label className="text-xs font-medium" style={{ color: T.mutedForeground }}>Participação (%)</label>
+            <Input type="number" placeholder="Ex.: 50" value={qsForm.percentual} onChange={(e) => setQsForm((f) => ({ ...f, percentual: e.target.value }))} />
+          </div>
+          <div className="flex flex-col gap-1.5">
+            <label className="text-xs font-medium" style={{ color: T.mutedForeground }}>Quotas integralizadas</label>
+            <Input type="number" placeholder="Ex.: 50" value={qsForm.quotasIntegralizadas} onChange={(e) => setQsForm((f) => ({ ...f, quotasIntegralizadas: e.target.value }))} />
+          </div>
         </div>
-        <DialogDescription>
-          Esboço ilustrativo — a seleção de trilha ainda não é clicável aqui, aguardando a decisão de arquitetura da reunião de sexta.
-        </DialogDescription>
-      </Dialog>
+
+        <SheetFooter>
+          <Button variant="outline" onClick={() => setQsSheetOpen(false)}>Cancelar</Button>
+          <Button disabled={!qsForm.socioId || !qsForm.percentual} onClick={handleSalvarParticipacao}>Salvar</Button>
+        </SheetFooter>
+      </Sheet>
 
       {/* ================= DRAWER: ADICIONAR FERIADO ================= */}
       <Sheet open={sheetOpen} onOpenChange={setSheetOpen}>

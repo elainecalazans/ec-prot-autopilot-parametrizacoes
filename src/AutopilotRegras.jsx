@@ -2106,8 +2106,9 @@ export default function AutopilotRegras() {
           <SidebarGroupLabel>Regras</SidebarGroupLabel>
           <SidebarMenu>
             <SidebarMenuItem>
-              <SidebarMenuButton isActive={section === "regras"} onClick={() => tentarNavegar("regras")}>
+              <SidebarMenuButton disabled>
                 <BookOpenCheck className="size-4" /> Regras Gerais
+                <SidebarMenuBadge>em breve</SidebarMenuBadge>
               </SidebarMenuButton>
             </SidebarMenuItem>
             <SidebarMenuItem>
@@ -2118,13 +2119,15 @@ export default function AutopilotRegras() {
               {regrasTrilhaOpen && (
                 <SidebarMenuSub>
                   <SidebarMenuSubItem>
-                    <SidebarMenuSubButton isActive={section === "regras-trilha-fiscal"} onClick={() => tentarNavegar("regras-trilha-fiscal")}>
+                    <SidebarMenuSubButton disabled>
                       <Receipt className="size-4" /> Fiscal
+                      <SidebarMenuBadge>em breve</SidebarMenuBadge>
                     </SidebarMenuSubButton>
                   </SidebarMenuSubItem>
                   <SidebarMenuSubItem>
-                    <SidebarMenuSubButton isActive={section === "regras-trilha-dp"} onClick={() => tentarNavegar("regras-trilha-dp")}>
+                    <SidebarMenuSubButton disabled>
                       <Users className="size-4" /> DP
+                      <SidebarMenuBadge>em breve</SidebarMenuBadge>
                     </SidebarMenuSubButton>
                   </SidebarMenuSubItem>
                   <SidebarMenuSubItem>
@@ -2152,18 +2155,21 @@ export default function AutopilotRegras() {
               {parametrosOpen && (
                 <SidebarMenuSub>
                   <SidebarMenuSubItem>
-                    <SidebarMenuSubButton isActive={section === "fiscal"} onClick={() => tentarNavegar("fiscal")}>
+                    <SidebarMenuSubButton disabled>
                       <Receipt className="size-4" /> Fiscal
+                      <SidebarMenuBadge>em breve</SidebarMenuBadge>
                     </SidebarMenuSubButton>
                   </SidebarMenuSubItem>
                   <SidebarMenuSubItem>
-                    <SidebarMenuSubButton isActive={section === "dp"} onClick={() => tentarNavegar("dp")}>
+                    <SidebarMenuSubButton disabled>
                       <Users className="size-4" /> DP
+                      <SidebarMenuBadge>em breve</SidebarMenuBadge>
                     </SidebarMenuSubButton>
                   </SidebarMenuSubItem>
                   <SidebarMenuSubItem>
-                    <SidebarMenuSubButton isActive={section === "contabil"} onClick={() => tentarNavegar("contabil")}>
+                    <SidebarMenuSubButton disabled>
                       <Landmark className="size-4" /> Contábil
+                      <SidebarMenuBadge>em breve</SidebarMenuBadge>
                     </SidebarMenuSubButton>
                   </SidebarMenuSubItem>
                 </SidebarMenuSub>
@@ -2172,18 +2178,7 @@ export default function AutopilotRegras() {
           </SidebarMenu>
         </div>
 
-        <div className="mt-auto">
-          <Card className="p-3 gap-2" style={{ boxShadow: "none" }}>
-            <div className="flex items-center gap-1.5 text-xs font-semibold px-0">
-              <AlertTriangle className="size-3.5" style={{ color: T.warningText }} /> Em aberto p/ sexta
-            </div>
-            <ul className="text-[11px] leading-relaxed list-disc pl-4" style={{ color: T.mutedForeground }}>
-              <li>Onde o AutoPilot mora tecnicamente</li>
-              <li>Camada intermediária de regras (era do Dan)</li>
-              <li>Mapa de regras formal (Jeniffer) — Fiscal ainda é esboço</li>
-            </ul>
-          </Card>
-        </div>
+        <div className="mt-auto" />
 
         <SidebarSeparator />
 

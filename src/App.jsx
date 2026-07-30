@@ -1,7 +1,7 @@
-import AutopilotRegras from './AutopilotRegras.jsx'
+import RegrasGeraisPage from './features/regras-gerais/RegrasGeraisPage.jsx'
 
 function App() {
-  return <AutopilotRegras />
+  return <RegrasGeraisPage />
 }
 
 export default App

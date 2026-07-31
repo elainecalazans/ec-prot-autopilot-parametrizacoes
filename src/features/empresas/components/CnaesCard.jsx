@@ -1,22 +1,18 @@
 import {
   T,
-  Badge,
   Card,
   CardContent,
-  CardDescription,
   CardHeader,
   CardTitle,
 } from "../../../components/ui";
+import AvisoSomenteLeitura from "./AvisoSomenteLeitura";
 
 export default function CnaesCard({ empresa }) {
   return (
-    <Card className="gap-3">
+    <Card className="gap-4 max-w-2xl">
       <CardHeader>
-        <div className="flex items-center gap-2">
-          <CardTitle>Atividades</CardTitle>
-          <Badge variant="secondary">leitura · cockpit</Badge>
-        </div>
-        <CardDescription>CNAE principal e secundários — preenchimento obrigatório no Cockpit.</CardDescription>
+        <CardTitle>Atividades</CardTitle>
+        <AvisoSomenteLeitura />
       </CardHeader>
       <CardContent className="grid grid-cols-2 gap-x-6 gap-y-3">
         <div className="flex flex-col gap-0.5">
@@ -25,7 +21,11 @@ export default function CnaesCard({ empresa }) {
         </div>
         <div className="flex flex-col gap-0.5">
           <span className="text-[11px]" style={{ color: T.mutedForeground }}>CNAEs secundários</span>
-          <span className="text-sm">{empresa.atividades.cnaeSecundarios.length > 0 ? empresa.atividades.cnaeSecundarios.join(", ") : "—"}</span>
+          {empresa.atividades.cnaeSecundarios.length > 0 ? (
+            <span className="text-sm">{empresa.atividades.cnaeSecundarios.join(", ")}</span>
+          ) : (
+            <span className="text-sm italic" style={{ color: T.mutedForeground }}>Nenhum CNAE secundário cadastrado.</span>
+          )}
         </div>
       </CardContent>
     </Card>

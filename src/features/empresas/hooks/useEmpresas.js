@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { CENTRALIZACAO_OPCOES, FILIAIS_PAGE_SIZE } from "../config/empresasConfig";
+import { CENTRALIZACAO_OPCOES, EMPRESAS_PAGE_SIZE, FILIAIS_PAGE_SIZE } from "../config/empresasConfig";
 import {
   CENTRALIZACAO_INICIAL,
   CONTADORES_INICIAL,
@@ -12,6 +12,11 @@ import { centralizacaoLabelParaTipo } from "../utils/centralizacao";
 export function useEmpresas() {
   const [empresaCadastroSel, setEmpresaCadastroSel] = useState(null);
   const [cadastroDetalheTab, setCadastroDetalheTab] = useState("geral");
+  const [filtroBusca, setFiltroBusca] = useState("");
+  const [filtroStatus, setFiltroStatus] = useState("todas");
+  const [filtroTipo, setFiltroTipo] = useState("todos");
+  const [ordenarPor, setOrdenarPor] = useState("empresa");
+  const [qtdVisivelEmpresas, setQtdVisivelEmpresas] = useState(EMPRESAS_PAGE_SIZE);
   const [socios, setSocios] = useState(SOCIOS_INICIAL);
   const [contadores] = useState(CONTADORES_INICIAL);
   const [centralizacaoPorEmpresa, setCentralizacaoPorEmpresa] = useState(CENTRALIZACAO_INICIAL);
@@ -20,7 +25,17 @@ export function useEmpresas() {
   const [qtdVisivelFiliaisPorMatriz, setQtdVisivelFiliaisPorMatriz] = useState({});
   const [qsSheetOpen, setQsSheetOpen] = useState(false);
   const [qsEditandoSocioId, setQsEditandoSocioId] = useState(null);
-  const [qsForm, setQsForm] = useState({ socioId: "", percentual: "", quotasIntegralizadas: "" });
+  const [qsForm, setQsForm] = useState({ socioId: "", percentual: "", quotasIntegralizadas: "", tipoSocio: "", dataEntrada: "", dataSaida: "" });
+
+  // Muda a busca/filtro/ordenação e a paginação da listagem volta pra primeira
+  // página — ajustado durante a renderização (padrão recomendado pelo React
+  // para "resetar estado quando outro valor muda"), não em useEffect.
+  const filtroChave = `${filtroBusca}|${filtroStatus}|${filtroTipo}|${ordenarPor}`;
+  const [ultimoFiltroChave, setUltimoFiltroChave] = useState(filtroChave);
+  if (filtroChave !== ultimoFiltroChave) {
+    setUltimoFiltroChave(filtroChave);
+    setQtdVisivelEmpresas(EMPRESAS_PAGE_SIZE);
+  }
 
   const empresaCadastro = empresaCadastroSel ? findEmpresaByCodigo(empresaCadastroSel) : null;
   const participacoesDaEmpresa = empresaCadastroSel
@@ -44,6 +59,16 @@ export function useEmpresas() {
     setQtdVisivelFiliaisPorMatriz((prev) => ({ ...prev, [matrizCodigo]: (prev[matrizCodigo] || FILIAIS_PAGE_SIZE) + FILIAIS_PAGE_SIZE }));
   }
 
+  function carregarMaisEmpresas() {
+    setQtdVisivelEmpresas((q) => q + EMPRESAS_PAGE_SIZE);
+  }
+
+  function limparFiltros() {
+    setFiltroBusca("");
+    setFiltroStatus("todas");
+    setFiltroTipo("todos");
+  }
+
   function abrirCadastroEmpresa(codigo) {
     setEmpresaCadastroSel(codigo);
     setCadastroDetalheTab("geral");
@@ -62,13 +87,20 @@ export function useEmpresas() {
 
   function abrirAdicionarParticipacao() {
     setQsEditandoSocioId(null);
-    setQsForm({ socioId: "", percentual: "", quotasIntegralizadas: "" });
+    setQsForm({ socioId: "", percentual: "", quotasIntegralizadas: "", tipoSocio: "", dataEntrada: "", dataSaida: "" });
     setQsSheetOpen(true);
   }
 
   function abrirEditarParticipacao(socio, participacao) {
     setQsEditandoSocioId(socio.id);
-    setQsForm({ socioId: String(socio.id), percentual: String(participacao.percentual), quotasIntegralizadas: String(participacao.quotasIntegralizadas) });
+    setQsForm({
+      socioId: String(socio.id),
+      percentual: String(participacao.percentual),
+      quotasIntegralizadas: String(participacao.quotasIntegralizadas),
+      tipoSocio: participacao.tipoSocio || "",
+      dataEntrada: participacao.dataEntrada || "",
+      dataSaida: participacao.dataSaida || "",
+    });
     setQsSheetOpen(true);
   }
 
@@ -76,11 +108,14 @@ export function useEmpresas() {
     if (!empresaCadastroSel || !qsForm.socioId) return;
     const percentual = Number(qsForm.percentual) || 0;
     const quotasIntegralizadas = Number(qsForm.quotasIntegralizadas) || 0;
+    const tipoSocio = qsForm.tipoSocio || null;
+    const dataEntrada = qsForm.dataEntrada || null;
+    const dataSaida = qsForm.dataSaida || null;
     setSocios((prev) => prev.map((s) => {
       const participaDestaEmpresa = s.participacoes.some((p) => p.empresaCodigo === empresaCadastroSel);
       if (String(s.id) === qsForm.socioId) {
         const outras = s.participacoes.filter((p) => p.empresaCodigo !== empresaCadastroSel);
-        return { ...s, participacoes: [...outras, { empresaCodigo: empresaCadastroSel, percentual, quotasIntegralizadas }] };
+        return { ...s, participacoes: [...outras, { empresaCodigo: empresaCadastroSel, percentual, quotasIntegralizadas, tipoSocio, dataEntrada, dataSaida }] };
       }
       if (qsEditandoSocioId && s.id === qsEditandoSocioId && participaDestaEmpresa) {
         return { ...s, participacoes: s.participacoes.filter((p) => p.empresaCodigo !== empresaCadastroSel) };
@@ -104,22 +139,33 @@ export function useEmpresas() {
     atualizarBuscaFilial,
     buscaFiliaisPorMatriz,
     cadastroDetalheTab,
+    carregarMaisEmpresas,
     carregarMaisFiliais,
     centralizacaoPorEmpresa,
     contadores,
     empresaCadastro,
     empresaCadastroSel,
+    filtroBusca,
+    filtroStatus,
+    filtroTipo,
     handleAlterarCentralizacao,
     handleExcluirParticipacao,
     handleSalvarParticipacao,
+    limparFiltros,
     matrizesExpandidas,
+    ordenarPor,
     participacoesDaEmpresa,
+    qtdVisivelEmpresas,
     qtdVisivelFiliaisPorMatriz,
     qsEditandoSocioId,
     qsForm,
     qsSheetOpen,
     setCadastroDetalheTab,
     setEmpresaCadastroSel,
+    setFiltroBusca,
+    setFiltroStatus,
+    setFiltroTipo,
+    setOrdenarPor,
     setQsForm,
     setQsSheetOpen,
     socios,

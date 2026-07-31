@@ -13,16 +13,18 @@ empresas/
 │   ├── EmpresasHeader.jsx     # Título e descrição da página
 │   ├── EmpresasList.jsx       # Listagem de empresas (matrizes + avulsas), com filiais expansíveis
 │   ├── FiliaisTable.jsx       # Sub-tabela de filiais de uma matriz (busca + paginação)
-│   ├── EmpresaDetalhe.jsx     # Cadastro de uma empresa: tabs internas (geral/atividades/sócios/contadores/centralizadora)
+│   ├── EmpresaDetalhe.jsx     # Cadastro de uma empresa: tabs internas (geral/atividades/sócios/contadores/centralizadora/módulos)
 │   ├── DadosGeraisCard.jsx    # Card "Dados gerais" (compõe os 3 blocos abaixo)
-│   ├── DadosGeraisEmpresa.jsx # Bloco: razão social, CNPJ, endereço, contato etc. (leitura · cockpit)
-│   ├── HistoricoEmpresa.jsx   # Bloco: contador responsável, status do cliente, contrato
-│   ├── CertificadoDigital.jsx # Bloco: certificado digital e observações gerais
-│   ├── CnaesCard.jsx          # Card "Atividades": CNAE principal e secundários (leitura · cockpit)
+│   ├── DadosGeraisEmpresa.jsx # Blocos: identificação, inscrições, contato e localização (somente leitura)
+│   ├── HistoricoEmpresa.jsx   # Bloco "Relacionamento": contador responsável, status do cliente, contrato
+│   ├── CertificadoDigital.jsx # Bloco "Complementares": certificado digital e observações gerais
+│   ├── CnaesCard.jsx          # Card "Atividades": CNAE principal e secundários (somente leitura)
+│   ├── AvisoSomenteLeitura.jsx    # Aviso "Origem dos dados: Cockpit / Somente leitura", reutilizado nos cards espelhados
 │   ├── QuadroSocietarioCard.jsx   # Tab "Sócios" do cadastro: participações societárias da empresa aberta
 │   ├── QuadroSocietarioDrawer.jsx # Sheet de adicionar/editar participação societária
 │   ├── ContadoresTab.jsx      # Tab "Contadores" do cadastro: contador(es) vinculados à empresa aberta (somente leitura)
 │   ├── CentralizacaoCard.jsx  # Card "Empresa centralizadora": define relação matriz/filial
+│   ├── ModulosCard.jsx        # Tab "Módulos" do cadastro: módulos do AutoPilot habilitados para a empresa aberta (somente leitura)
 │   └── SituacaoBadge.jsx      # Badge Ativa/Inativa reutilizado nas listagens
 ├── hooks/
 │   └── useEmpresas.js         # Todo o estado e as regras da feature (único hook de orquestração)
@@ -51,6 +53,7 @@ empresas/
 - **Sócios**: tab interna do cadastro da empresa (`QuadroSocietarioCard` + `QuadroSocietarioDrawer`). Cada empresa referencia o registro unificado de sócios (estado `socios` no hook) através de `participacoes` (percentual + quotas integralizadas). Um sócio pode participar de várias empresas, mas a gestão de vínculo é feita sempre a partir do cadastro da empresa.
 - **Contadores**: tab interna do cadastro da empresa (`ContadoresTab`), somente leitura — mostra os contadores cujo `empresasAtendidas` inclui o código da empresa aberta. O registro de contadores em si (`contadores` no hook) não tem UI própria de criação/edição nesta feature.
 - **Empresa centralizadora**: relação matriz/filial usada futuramente para consolidação contábil. Guardada em `centralizacaoPorEmpresa`, chaveada por código da empresa (`tipo` + `vinculoCodigo` da matriz quando `tipo === "filial"`).
+- **Módulos**: tab interna do cadastro da empresa (`ModulosCard`), somente leitura — mostra o catálogo fixo de módulos do AutoPilot (`MODULOS_DISPONIVEIS` em `config/empresasConfig.js`: Fiscal, DP, Contábil) e indica quais estão habilitados para a empresa aberta via `empresa.modulosHabilitados` (array de `key`).
 
 ## Convenções
 

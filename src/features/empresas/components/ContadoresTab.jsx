@@ -17,10 +17,10 @@ export default function ContadoresTab({ contadores, empresa }) {
   const contadoresDaEmpresa = contadores.filter((c) => c.empresasAtendidas.includes(empresa.codigo));
 
   return (
-    <Card className="gap-3">
+    <Card className="gap-4">
       <CardHeader>
         <CardTitle>Contadores</CardTitle>
-        <CardDescription>Contador(es) habilitados a assinar demonstrativos de {empresa.nome}.</CardDescription>
+        <CardDescription>Contadores habilitados a assinar demonstrativos desta empresa.</CardDescription>
       </CardHeader>
       <CardContent>
         <Table>

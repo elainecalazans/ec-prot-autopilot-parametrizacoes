@@ -1,7 +1,6 @@
 import { Info } from "lucide-react";
 import {
   T,
-  Badge,
   Card,
   CardContent,
   CardDescription,
@@ -16,7 +15,9 @@ import {
   TableHeader,
   TableRow,
 } from "../../../components/ui";
+import { TABELA_EMPRESAS_PADDINGS as P } from "../config/empresasConfig";
 import { centralizacaoTipoParaLabel } from "../utils/centralizacao";
+import SituacaoBadge from "./SituacaoBadge";
 
 export default function CentralizacaoCard({
   CENTRALIZACAO_OPCOES,
@@ -37,7 +38,7 @@ export default function CentralizacaoCard({
         <CardTitle>Empresa centralizadora</CardTitle>
         <CardDescription>
           {infoAtual.tipo === "não se aplica"
-            ? `${empresa.nome} não tem relação de matriz/filial cadastrada.`
+            ? "Esta empresa não tem relação de matriz/filial cadastrada."
             : `Grupo de ${EMPRESAS.find((e) => e.codigo === matrizCodigo)?.nome} — indica qual empresa recebe as informações consolidadas das filiais.`}
         </CardDescription>
       </CardHeader>
@@ -45,11 +46,11 @@ export default function CentralizacaoCard({
         <Table>
           <TableHeader>
             <tr>
-              <TableHead>Código</TableHead>
-              <TableHead>Razão Social</TableHead>
-              <TableHead>Tipo de Inscrição</TableHead>
-              <TableHead>Inscrição</TableHead>
-              <TableHead>Situação</TableHead>
+              <TableHead style={P.apertada}>Código</TableHead>
+              <TableHead>Razão social</TableHead>
+              <TableHead style={P.compacta}>Tipo de inscrição</TableHead>
+              <TableHead style={P.compacta}>Inscrição</TableHead>
+              <TableHead style={P.apertada}>Status</TableHead>
               <TableHead>Centralização</TableHead>
             </tr>
           </TableHeader>
@@ -58,11 +59,11 @@ export default function CentralizacaoCard({
               const info = centralizacaoPorEmpresa[e.codigo] || { tipo: "não se aplica" };
               return (
                 <TableRow key={e.codigo} style={e.codigo === empresa.codigo ? { background: T.accent } : {}}>
-                  <TableCell>{e.codigo}</TableCell>
+                  <TableCell style={P.apertada}>{e.codigo}</TableCell>
                   <TableCell>{e.dadosGerais.razaoSocial}</TableCell>
-                  <TableCell>{e.dadosGerais.tipoInscricao}</TableCell>
-                  <TableCell>{e.dadosGerais.cnpj}</TableCell>
-                  <TableCell><Badge variant={e.dadosGerais.statusCliente === "ativo" ? "success" : "outline"}>{e.dadosGerais.statusCliente === "ativo" ? "Ativa" : "Inativa"}</Badge></TableCell>
+                  <TableCell style={P.compacta}>{e.dadosGerais.tipoInscricao}</TableCell>
+                  <TableCell style={P.compacta}>{e.dadosGerais.cnpj}</TableCell>
+                  <TableCell style={P.apertada}><SituacaoBadge empresa={e} /></TableCell>
                   <TableCell>
                     <SelectField
                       value={centralizacaoTipoParaLabel(info.tipo)}

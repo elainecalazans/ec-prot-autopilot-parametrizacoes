@@ -1,4 +1,3 @@
-import { ChevronRight } from "lucide-react";
 import {
   T,
   Badge,
@@ -9,14 +8,18 @@ import {
   TableCell,
   TableHead,
   TableHeader,
-  TableRow,
 } from "../../../components/ui";
-import { TABELA_EMPRESAS_LARGURAS as L } from "../config/empresasConfig";
+import {
+  TABELA_EMPRESAS_LARGURAS as L,
+  TABELA_EMPRESAS_LARGURA_MINIMA_NOME as EMPRESA_MIN,
+  TABELA_EMPRESAS_PADDINGS as P,
+} from "../config/empresasConfig";
 import { findContadorDaEmpresa } from "../utils/contadores";
+import IconeAcaoNavegar from "./IconeAcaoNavegar";
+import LinhaEmpresaClicavel from "./LinhaEmpresaClicavel";
 import SituacaoBadge from "./SituacaoBadge";
 
-const CELL_COMPACTA = { paddingLeft: 12, paddingRight: 12 };
-const CELL_ACAO = { paddingLeft: 8, paddingRight: 16 };
+const SUBHEADER_BASE = { height: 30, paddingTop: 0, paddingBottom: 0, fontSize: 11, fontWeight: 500, color: T.mutedForeground };
 
 export default function FiliaisTable({
   FILIAIS_PAGE_SIZE,
@@ -31,8 +34,10 @@ export default function FiliaisTable({
   matrizCodigo,
   qtdVisivel,
 }) {
+  const larguraMinimaTabela = Object.values(L).reduce((soma, largura) => soma + largura, 0) + EMPRESA_MIN;
+
   return (
-    <div className="flex flex-col gap-3 px-6 py-4" style={{ background: T.muted, borderBottom: `1px solid ${T.border}` }}>
+    <div className="flex flex-col gap-2 pl-10 py-3" style={{ background: T.muted }}>
       {filiais.length > FILIAIS_PAGE_SIZE && (
         <Input
           placeholder="Buscar filial por nome ou código..."
@@ -41,7 +46,7 @@ export default function FiliaisTable({
           className="w-72"
         />
       )}
-      <Table style={{ tableLayout: "fixed" }}>
+      <Table style={{ tableLayout: "fixed", minWidth: larguraMinimaTabela }}>
         <colgroup>
           <col style={{ width: L.codigo }} />
           <col />
@@ -50,44 +55,38 @@ export default function FiliaisTable({
           <col style={{ width: L.status }} />
           <col style={{ width: L.acao }} />
         </colgroup>
-        <TableHeader>
+        <TableHeader style={{ background: T.card }}>
           <tr>
-            <TableHead style={CELL_COMPACTA}>Código</TableHead>
-            <TableHead>Filial</TableHead>
-            <TableHead style={CELL_COMPACTA}>CNPJ</TableHead>
-            <TableHead style={CELL_COMPACTA}>Contador responsável</TableHead>
-            <TableHead style={CELL_COMPACTA}>Status</TableHead>
-            <TableHead style={CELL_ACAO}></TableHead>
+            <TableHead style={{ ...SUBHEADER_BASE, ...P.apertada }}>Código</TableHead>
+            <TableHead style={SUBHEADER_BASE}>Filial</TableHead>
+            <TableHead style={{ ...SUBHEADER_BASE, ...P.compacta }}>CNPJ</TableHead>
+            <TableHead style={{ ...SUBHEADER_BASE, ...P.compacta }}>Contador responsável</TableHead>
+            <TableHead style={{ ...SUBHEADER_BASE, ...P.apertada }}>Status</TableHead>
+            <TableHead style={{ ...SUBHEADER_BASE, ...P.acao }}></TableHead>
           </tr>
         </TableHeader>
         <TableBody>
           {filiaisVisiveis.length === 0 && (
-            <tr><td colSpan={6} className="px-6 py-6 text-center text-xs" style={{ color: T.mutedForeground }}>Nenhuma filial encontrada.</td></tr>
+            <tr><td colSpan={6} className="px-6 py-5 text-center text-xs" style={{ color: T.mutedForeground }}>Nenhuma filial encontrada.</td></tr>
           )}
           {filiaisVisiveis.map((f) => {
             const contadorResp = findContadorDaEmpresa(contadores, f.codigo);
             return (
-              <TableRow
-                key={f.codigo}
-                className="cursor-pointer"
-                onClick={() => abrirCadastroEmpresa(f.codigo)}
-                onMouseEnter={(e) => (e.currentTarget.style.background = T.muted)}
-                onMouseLeave={(e) => (e.currentTarget.style.background = "transparent")}
-              >
-                <TableCell style={CELL_COMPACTA}>{f.codigo}</TableCell>
+              <LinhaEmpresaClicavel key={f.codigo} abrirCadastroEmpresa={abrirCadastroEmpresa} codigo={f.codigo} nome={f.nome}>
+                <TableCell style={P.apertada}>{f.codigo}</TableCell>
                 <TableCell>
                   <div className="flex items-center gap-2 min-w-0">
                     <Badge variant="secondary" className="shrink-0">Filial</Badge>
-                    <span className="text-sm truncate">{f.nome}</span>
+                    <span className="text-sm truncate" title={f.nome}>{f.nome}</span>
                   </div>
                 </TableCell>
-                <TableCell style={CELL_COMPACTA}>{f.dadosGerais.cnpj}</TableCell>
-                <TableCell style={CELL_COMPACTA} title={contadorResp?.nome}>
+                <TableCell style={P.compacta}>{f.dadosGerais.cnpj}</TableCell>
+                <TableCell style={P.compacta} title={contadorResp?.nome}>
                   <span className="block truncate">{contadorResp?.nome || "—"}</span>
                 </TableCell>
-                <TableCell style={CELL_COMPACTA}><SituacaoBadge empresa={f} /></TableCell>
-                <TableCell style={CELL_ACAO}><ChevronRight className="size-4" style={{ color: T.mutedForeground }} /></TableCell>
-              </TableRow>
+                <TableCell style={P.apertada}><SituacaoBadge empresa={f} /></TableCell>
+                <TableCell style={P.acao}><IconeAcaoNavegar /></TableCell>
+              </LinhaEmpresaClicavel>
             );
           })}
         </TableBody>

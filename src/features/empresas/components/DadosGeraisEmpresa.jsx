@@ -9,8 +9,8 @@ export default function DadosGeraisEmpresa({ dadosGerais }) {
       <SecaoDados titulo="Identificação">
         <CampoDado className="col-span-2" label="Razão social" value={dadosGerais.razaoSocial} />
         <CampoDado label="Nome fantasia" value={dadosGerais.nomeFantasia} />
-        <CampoDado label="CNPJ" value={dadosGerais.cnpj} />
         <CampoDado label="Natureza jurídica" value={dadosGerais.naturezaJuridica} />
+        <CampoDado label="CNPJ" value={dadosGerais.cnpj} />
         <CampoDado label="Regime tributário federal" value={dadosGerais.regimeTributarioFederal} />
       </SecaoDados>
 
@@ -19,12 +19,9 @@ export default function DadosGeraisEmpresa({ dadosGerais }) {
         <CampoDado label="Inscrição municipal" value={dadosGerais.im} />
       </SecaoDados>
 
-      <SecaoDados titulo="Contato">
+      <SecaoDados titulo="Contato e localização">
         <CampoDado label="Telefone" value={dadosGerais.telefone} />
         <CampoDado label="E-mail" value={dadosGerais.email} />
-      </SecaoDados>
-
-      <SecaoDados titulo="Endereço">
         <CampoDado className="col-span-2" label="Endereço completo" value={formatarEndereco(dadosGerais)} />
       </SecaoDados>
     </CardContent>

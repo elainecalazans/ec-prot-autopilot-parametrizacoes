@@ -13,23 +13,34 @@ export default function EmpresasSection(props) {
     atualizarBuscaFilial,
     buscaFiliaisPorMatriz,
     cadastroDetalheTab,
+    carregarMaisEmpresas,
     carregarMaisFiliais,
     centralizacaoPorEmpresa,
     contadores,
     empresaCadastro,
+    filtroBusca,
+    filtroStatus,
+    filtroTipo,
     handleAlterarCentralizacao,
     handleExcluirParticipacao,
+    limparFiltros,
     matrizesExpandidas,
+    ordenarPor,
     participacoesDaEmpresa,
+    qtdVisivelEmpresas,
     qtdVisivelFiliaisPorMatriz,
     setCadastroDetalheTab,
     setEmpresaCadastroSel,
+    setFiltroBusca,
+    setFiltroStatus,
+    setFiltroTipo,
+    setOrdenarPor,
     toggleMatrizExpandida,
   } = props;
 
   return (
-    <section className="flex flex-col gap-4">
-      <EmpresasHeader />
+    <section className={`max-w-7xl ${empresaCadastro ? "flex flex-col gap-3" : "flex flex-col gap-4"}`}>
+      <EmpresasHeader emCadastro={!!empresaCadastro} />
 
       {!empresaCadastro && (
         <EmpresasList
@@ -38,11 +49,22 @@ export default function EmpresasSection(props) {
           abrirCadastroEmpresa={abrirCadastroEmpresa}
           atualizarBuscaFilial={atualizarBuscaFilial}
           buscaFiliaisPorMatriz={buscaFiliaisPorMatriz}
+          carregarMaisEmpresas={carregarMaisEmpresas}
           carregarMaisFiliais={carregarMaisFiliais}
           centralizacaoPorEmpresa={centralizacaoPorEmpresa}
           contadores={contadores}
+          filtroBusca={filtroBusca}
+          filtroStatus={filtroStatus}
+          filtroTipo={filtroTipo}
+          limparFiltros={limparFiltros}
           matrizesExpandidas={matrizesExpandidas}
+          ordenarPor={ordenarPor}
+          qtdVisivelEmpresas={qtdVisivelEmpresas}
           qtdVisivelFiliaisPorMatriz={qtdVisivelFiliaisPorMatriz}
+          setFiltroBusca={setFiltroBusca}
+          setFiltroStatus={setFiltroStatus}
+          setFiltroTipo={setFiltroTipo}
+          setOrdenarPor={setOrdenarPor}
           toggleMatrizExpandida={toggleMatrizExpandida}
         />
       )}

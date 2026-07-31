@@ -12,6 +12,7 @@ export const EMPRESAS = [
       duracaoContrato: "Indeterminado", certificadoDigital: "Válido até 20/11/2026", observacoesGerais: "",
     },
     atividades: { cnaePrincipal: "1091-1/00", cnaeSecundarios: ["4721-1/02", "5611-2/01"] },
+    modulosHabilitados: ["dp", "contabil"],
   },
   {
     nome: "Metalúrgica Sigma", codigo: "MS-0027", resp: "Wender Jonathan", optanteSimples: false,
@@ -26,6 +27,7 @@ export const EMPRESAS = [
       duracaoContrato: "12 meses, renovação automática", certificadoDigital: "Válido até 08/04/2027", observacoesGerais: "Empresa com filiais — aguardando definição do campo Empresa Centralizadora.",
     },
     atividades: { cnaePrincipal: "2599-3/99", cnaeSecundarios: ["2542-0/00"] },
+    modulosHabilitados: ["fiscal", "dp", "contabil"],
   },
   {
     nome: "Comércio Horizonte", codigo: "CH-0042", resp: "Andressa Lima", optanteSimples: true,
@@ -40,6 +42,7 @@ export const EMPRESAS = [
       duracaoContrato: "Indeterminado", certificadoDigital: "Expirado em 01/02/2026", observacoesGerais: "",
     },
     atividades: { cnaePrincipal: "4721-1/02", cnaeSecundarios: [] },
+    modulosHabilitados: ["contabil"],
   },
   {
     nome: "Metalúrgica Sigma — Filial Anápolis", codigo: "MS-0027-F1", resp: "Wender Jonathan", optanteSimples: false,
@@ -54,6 +57,7 @@ export const EMPRESAS = [
       duracaoContrato: "12 meses, renovação automática", certificadoDigital: "Válido até 08/04/2027", observacoesGerais: "",
     },
     atividades: { cnaePrincipal: "2599-3/99", cnaeSecundarios: [] },
+    modulosHabilitados: ["fiscal", "dp", "contabil"],
   },
   {
     nome: "Metalúrgica Sigma — Filial Trindade", codigo: "MS-0027-F2", resp: "Wender Jonathan", optanteSimples: false,
@@ -68,6 +72,7 @@ export const EMPRESAS = [
       duracaoContrato: "12 meses, renovação automática", certificadoDigital: "Válido até 08/04/2027", observacoesGerais: "",
     },
     atividades: { cnaePrincipal: "2599-3/99", cnaeSecundarios: [] },
+    modulosHabilitados: ["fiscal", "dp", "contabil"],
   },
 ];
 
@@ -77,19 +82,23 @@ export const EMPRESAS = [
 export const SOCIOS_INICIAL = [
   {
     id: 1, nome: "Renato Zonzini Bocabello", cpf: "200.000.000-27",
-    participacoes: [{ empresaCodigo: "MS-0027", percentual: 100, quotasIntegralizadas: 100 }],
+    telefone: "(62) 99101-2233", email: "renato.bocabello@sigmametais.com.br",
+    participacoes: [{ empresaCodigo: "MS-0027", percentual: 100, quotasIntegralizadas: 100, tipoSocio: "Administrador", dataEntrada: "02/06/2009", dataSaida: null }],
   },
   {
     id: 2, nome: "Elizandra Souza", cpf: "310.111.222-33",
-    participacoes: [{ empresaCodigo: "PA-0011", percentual: 60, quotasIntegralizadas: 60 }],
+    telefone: "(62) 99123-4455", email: "elizandra.souza@padariaaurora.com.br",
+    participacoes: [{ empresaCodigo: "PA-0011", percentual: 60, quotasIntegralizadas: 60, tipoSocio: "Administrador", dataEntrada: "15/03/2015", dataSaida: null }],
   },
   {
     id: 3, nome: "Marcos Vinícius Souza", cpf: "410.222.333-44",
-    participacoes: [{ empresaCodigo: "PA-0011", percentual: 40, quotasIntegralizadas: 40 }],
+    telefone: "(62) 99876-5544", email: "marcos.souza@padariaaurora.com.br",
+    participacoes: [{ empresaCodigo: "PA-0011", percentual: 40, quotasIntegralizadas: 40, tipoSocio: "Cotista", dataEntrada: "15/03/2015", dataSaida: null }],
   },
   {
     id: 4, nome: "Andressa Lima", cpf: "510.333.444-55",
-    participacoes: [{ empresaCodigo: "CH-0042", percentual: 100, quotasIntegralizadas: 100 }],
+    telefone: "(62) 99222-3311", email: "andressa.lima@horizontecomercio.com.br",
+    participacoes: [{ empresaCodigo: "CH-0042", percentual: 100, quotasIntegralizadas: 100, tipoSocio: "Administrador", dataEntrada: "22/09/2020", dataSaida: null }],
   },
 ];
 
